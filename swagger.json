@@ -1,0 +1,595 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Gravitas Assignment",
+        "description": "Swagger UI for Gravitas assignment",
+        "termsOfService": "http://swagger.io/terms/"
+    },
+    "host": "localhost:5000",
+    "basePath": "/api",
+    "tags": [
+        {
+            "name": "User",
+            "description": "API for User"
+        },
+        {
+            "name": "Company",
+            "description": "API for Company"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/login": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "description": "User Login",
+                "operationId": "",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "User Login Request",
+                        "schema": {
+                            "$ref": "#/definitions/LoginRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Login success response",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "User does not exists",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Something went wrong",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Empty field in request",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error response from DB",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/registerUser": {
+            "post": {
+                "tags": [
+                    "Company"
+                ],
+                "description": "User Registration by Company for any Vendor or Customer",
+                "operationId": "",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "an authorization header",
+                        "required": true
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "User Registration Request",
+                        "schema": {
+                            "$ref": "#/definitions/UserRegistrationRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Registration success response",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Something went wrong",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Empty field in request",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error response from DB",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/raiseContract": {
+            "post": {
+                "tags": [
+                    "Company"
+                ],
+                "description": "Company can raise contract for any vendor (Not functional through swagger use Postman)",
+                "operationId": "",
+                "consumes": [
+                    "multipart/form-data",
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "an authorization header",
+                        "required": true
+                    },
+                    {
+                        "in": "formData",
+                        "name": "file",
+                        "type": "file",
+                        "description": "Contract File"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Raise contract Request",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/RaiseContractRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Company raise contract success response",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Something went wrong",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Empty field in request",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error response from DB",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/contractAction": {
+            "post": {
+                "tags": [
+                    "Vendor"
+                ],
+                "description": "Vendor can Accept or Reject a contract",
+                "operationId": "",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "an authorization header",
+                        "required": true
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Contract Action Request",
+                        "schema": {
+                            "$ref": "#/definitions/ContractActionRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Registration success response",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Something went wrong",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Empty field in request",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error response from DB",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/shareContract": {
+            "post": {
+                "tags": [
+                    "Vendor"
+                ],
+                "description": "Vendor can share his contract with a customer",
+                "operationId": "",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "an authorization header",
+                        "required": true
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Contract Action Request",
+                        "schema": {
+                            "$ref": "#/definitions/ShareContractRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Registration success response",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Something went wrong",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Empty field in request",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error response from DB",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{id}/vendor": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "description": "Get List of Vendors",
+                "operationId": "",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "an authorization header",
+                        "required": true
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get All Vendors success response",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Something went wrong",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Empty field in request",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error response from DB",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{id}/customer": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "description": "Get List of Customers",
+                "operationId": "",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "an authorization header",
+                        "required": true
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get All Customers success response",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Something went wrong",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Empty field in request",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error response from DB",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{id}/contract/{hash}": {
+            "get": {
+                "tags": [
+                    "Contract"
+                ],
+                "description": "Get Contract File",
+                "operationId": "",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "description": "an authorization header",
+                        "required": true
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id"
+                    },
+                    {
+                        "name": "hash",
+                        "in": "path",
+                        "description": "File hash"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get Contract File success response",
+                        "schema": {
+                            "$ref": "#/definitions/SuccessResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Something went wrong",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "422": {
+                        "description": "Empty field in request",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Error response from DB",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "LoginRequest": {
+            "properties": {
+                "email": {
+                    "required": true,
+                    "type": "string",
+                    "example": "admin@gravitas-tech.com"
+                },
+                "password": {
+                    "required": true,
+                    "type": "string",
+                    "example": "User@123"
+                }
+            }
+        },
+        "UserRegistrationRequest": {
+            "properties": {
+                "email": {
+                    "required": true,
+                    "type": "string",
+                    "example": "vendor@gravitas-tech.com"
+                },
+                "password": {
+                    "required": true,
+                    "type": "string",
+                    "example": "User@123"
+                },
+                "role": {
+                    "required": true,
+                    "type": "string",
+                    "example": "Vendor"
+                },
+                "name": {
+                    "required": true,
+                    "type": "string",
+                    "example": "Vendor Name"
+                },
+                "id": {
+                    "required": true,
+                    "type": "string",
+                    "example": "user id"
+                }
+            }
+        },
+        "RaiseContractRequest": {
+            "properties": {
+                "id": {
+                    "required": true,
+                    "type": "string",
+                    "example": "user id"
+                },
+                "vendorId": {
+                    "required": true,
+                    "type": "string",
+                    "example": "vendor user id"
+                },
+                "name": {
+                    "required": true,
+                    "type": "string",
+                    "example": "Contract Name"
+                }
+            }
+        },
+        "ContractActionRequest": {
+            "properties": {
+                "id": {
+                    "required": true,
+                    "type": "string",
+                    "example": "user id"
+                },
+                "contractId": {
+                    "required": true,
+                    "type": "string",
+                    "example": "Contract id"
+                },
+                "status": {
+                    "required": true,
+                    "type": "string",
+                    "example": "Accepted"
+                }
+            }
+        },
+        "ShareContractRequest": {
+            "properties": {
+                "id": {
+                    "required": true,
+                    "type": "string",
+                    "example": "user id"
+                },
+                "contractId": {
+                    "required": true,
+                    "type": "string",
+                    "example": "Contract id"
+                },
+                "customerId": {
+                    "required": true,
+                    "type": "string",
+                    "example": "Customer Id"
+                }
+            }
+        },
+        "SuccessResponse": {
+            "properties": {
+                "message": {
+                    "example": "Success message!"
+                },
+                "success": {
+                    "type": "bool",
+                    "example": true
+                }
+            }
+        },
+        "ErrorResponse": {
+            "properties": {
+                "error": {
+                    "example": "contains error object or message"
+                },
+                "success": {
+                    "type": "bool",
+                    "example": false
+                }
+            }
+        }
+    }
+}

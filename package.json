@@ -1,0 +1,39 @@
+{
+  "name": "gravitas_assignment",
+  "version": "1.0.0",
+  "description": "Gravitas assignment for Hyperledger and IPFS implementation",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "debug": "nodemon --inspect server.js",
+    "lint": "eslint ./",
+    "lint-fix": "eslint --fix ./",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Oshin Gupta",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^3.5.4",
+    "body-parser": "^1.18.3",
+    "boom": "^7.3.0",
+    "config": "^3.0.1",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "fs": "0.0.1-security",
+    "ipfs-api": "^26.1.2",
+    "joi": "^14.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.5.1",
+    "multer": "^1.4.1",
+    "pg": "^7.8.0",
+    "swagger-ui-express": "^4.0.2",
+    "winston": "^3.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.15.0",
+    "nodemon": "^1.18.9"
+  }
+}

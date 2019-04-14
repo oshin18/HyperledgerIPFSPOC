@@ -1,0 +1,19 @@
+{
+  "General": {
+    "port": 5000,
+    "dbConfig": "mongodb://127.0.0.1:27017/gravitasDevDB",
+    "secretKey": "humsenahopayega"
+  },
+  "ipfs": {
+    "host": "localhost",
+    "port": "5001",
+    "protocol": "http"
+  },
+  "CompanySeed": {
+    "email": "admin@gravitas-tech.com",
+    "password": "$2a$10$lc7Tu7KrCcE18HI1xFPHu./X40J41GrWq/nptPa6QhnQIMjfrYQue",
+    "role": "Company",
+    "code": "Gravitas Hyperledger Address",
+    "name": "Gravitas"
+  }
+}
