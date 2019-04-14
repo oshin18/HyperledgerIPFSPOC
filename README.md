@@ -19,10 +19,16 @@ You need to change the Company Seed in the config folder in the relevant json fi
 
 If you already started the server then you need to drop the user table from the database to re-register the Company.
 
+## IPFS Setup
+
+Start the IPFS daemon:
+`ipfs daemon`
+
 ## Start Server
 
 Start the development server:
 `npm start`
+
 Start the server in debug mode:
 `npm run debug`
 
